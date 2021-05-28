@@ -45,7 +45,7 @@ const Header = ({ location, temperature, weather, details, tip }: PropsType) => 
                 marginTop: "10px",
                 fontSize: "14px"
             }}>
-                {details.map(v => <span>{v}</span>)}
+                {details.map(v => <span key={v}>{v}</span>)}
             </div>
         </div>
         <div style={{
