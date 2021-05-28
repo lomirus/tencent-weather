@@ -13,6 +13,10 @@ module.exports = (_env, argv) => {
                 test: /\.tsx/,
                 include: resolve("src"),
                 use: "babel-loader"
+            }, {
+                test: /\.css/,
+                include: resolve("src"),
+                use: ["style-loader", "css-loader"]
             }]
         },
         plugins: [new HtmlWebpackPlugin({
