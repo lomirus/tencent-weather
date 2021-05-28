@@ -8,5 +8,4 @@ module.exports = {
         ],
         "@babel/typescript",
     ],
-    plugins: ["@emotion"]
 };

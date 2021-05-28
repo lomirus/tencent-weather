@@ -1,7 +1,6 @@
 {
     "compilerOptions": {
         "jsx": "react-jsx", // https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html
-        "jsxImportSource": "@emotion/react", // to make typescript can resolve the `css` props
         "strict": true
     }
 }

@@ -1,9 +1,8 @@
-import { Interpolation, Theme } from '@emotion/react'
-import { useContext } from 'react'
+import { useContext, CSSProperties } from 'react'
 
 import Context from '../store/context'
 
-const styles: Record<string, Interpolation<Theme>> = {
+const styles: Record<string, CSSProperties> = {
     main: {
         
     }
@@ -15,7 +14,7 @@ type PropsType = {
 
 const Recent = ({}: PropsType) => {
     const [state, dispatch] = useContext(Context);
-    return <div css={styles.main}>
+    return <div style={styles.main}>
 
     </div>
 }

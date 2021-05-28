@@ -11,7 +11,12 @@ import Trend from './components/Trend'
 
 const App = (): ReactElement => (
     <Context.Provider value={useReducer(reducer, initialState)}>
-        <Header />
+        <Header
+            location="北京市"
+            temperature={18}
+            weather="多云"
+            details={["湿度 51%", "西风 0级"]}
+            tip="光芒透过云缝，洒向大地~" />
         <Recent />
         <Timeline />
         <Trend />
