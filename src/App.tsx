@@ -17,7 +17,7 @@ const App = (): ReactElement => (
             weather="多云"
             details={["湿度 51%", "西风 0级"]}
             tip="光芒透过云缝，洒向大地~" />
-        <Recent />
+        <Recent today={{}} tommorrow={{}}/>
         <Timeline />
         <Trend />
         <Suggestions />

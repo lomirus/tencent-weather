@@ -17,6 +17,10 @@ module.exports = (_env, argv) => {
                 test: /\.css/,
                 include: resolve("src"),
                 use: ["style-loader", "css-loader"]
+            }, {
+                test: /\.png/,
+                include: resolve("src"),
+                use: "url-loader"
             }]
         },
         plugins: [new HtmlWebpackPlugin({
