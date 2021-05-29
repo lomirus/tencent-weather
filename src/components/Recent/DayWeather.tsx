@@ -29,7 +29,7 @@ type PropsType = {
     temperature: string,
 }
 
-const Recent = ({ day, weather, temperature }: PropsType) => {
+const DayWeather = ({ day, weather, temperature }: PropsType) => {
     const [state, dispatch] = useContext(Context);
     return <div style={styles.root}>
         <div style={styles.topRow}>
@@ -43,4 +43,4 @@ const Recent = ({ day, weather, temperature }: PropsType) => {
     </div>
 }
 
-export default Recent;
+export default DayWeather;
