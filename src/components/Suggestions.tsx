@@ -1,7 +1,4 @@
-import { useContext, Dispatch, CSSProperties, useEffect } from 'react'
-
-import Context from '../store/context'
-import { ReducerAction } from '../store/types'
+import { useState, Dispatch, CSSProperties } from 'react'
 
 const styles: Record<string, CSSProperties> = {
     main: {
@@ -32,31 +29,29 @@ const styles: Record<string, CSSProperties> = {
     }
 }
 
-type PropsType = {
-
+type SuggestionType = {
+    icon: string,
+    state: string,
+    for: string,
 }
 
-const Suggestions = ({}: PropsType) => {
-    const [state, dispatch] = useContext(Context);
-    useEffect(() => {
-        fetchSuggestions(dispatch)
-    }, [])
+const Suggestions = () => {
+    const [state, setState] = useState<Array<SuggestionType>>([]);
+    fetchSuggestions(setState)
+
     return <div style={styles.main}>
-        {state.suggestions.map(s => (<div key={s.for} style={styles.item}>
-            <img style={styles.icon} src={require(`../assets/suggestions/${s.icon}.svg`).default} />
-            <span style={styles.state}>{s.state}</span>
-            <span style={styles.for}>{s.for}</span>
+        {state.map((v: SuggestionType) => (<div key={v.for} style={styles.item}>
+            <img style={styles.icon} src={require(`../assets/suggestions/${v.icon}.svg`).default} />
+            <span style={styles.state}>{v.state}</span>
+            <span style={styles.for}>{v.for}</span>
         </div>))}
     </div>
 }
 
-async function fetchSuggestions(dispatch: Dispatch<ReducerAction>) {
+async function fetchSuggestions(setState: Dispatch<React.SetStateAction<Array<SuggestionType>>>) {
     const data = await fetch("/api/v1/weather/suggestions")
     const json = await data.json();
-    dispatch({
-        type: "SUGGESTIONS",
-        payload: json
-    })
+    setState(json)
 }
 
 export default Suggestions;

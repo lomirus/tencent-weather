@@ -1,4 +1,4 @@
-import { useContext, CSSProperties } from 'react'
+import { useContext, CSSProperties, useState, Dispatch, SetStateAction } from 'react'
 
 import Context from '../store/context'
 
@@ -34,18 +34,39 @@ const styles: Record<string, CSSProperties> = {
     }
 }
 
+type HourType = {
+    time: string,
+    icon: string,
+    temperature: number
+}
+
 const RecentHours = () => {
-    const [state, dispatch] = useContext(Context);
+    const ctx = useContext(Context)[0];
+    const [state, setState] = useState<HourType[]>(Array.from({ length: 24 }, () => {
+        return {
+            time: "Loading",
+            icon: "qing",
+            temperature: 0
+        }
+    }))
+
+    fetchHourlyWeather(setState)
 
     return <div style={styles.main}>
-        {state.hours.map((hour, index) => (
+        {state.map((hour, index) => (
             <div key={index} style={styles.item}>
                 <span style={styles.time}>{hour.time}</span>
-                <img src={require(`../assets/${state.isDay ? "day" : "night"}/${hour.icon}.png`).default} style={styles.weather} />
+                <img src={require(`../assets/${ctx.isDaytime ? "day" : "night"}/${hour.icon}.png`).default} style={styles.weather} />
                 <span style={styles.temperature}>{hour.temperature}°</span>
             </div>
         ))}
     </div>
+}
+
+async function fetchHourlyWeather(setState: Dispatch<SetStateAction<HourType[]>>) {
+    const data = await fetch("/api/v1/weather/hours");
+    const json = await data.json();
+    setState(json)
 }
 
 export default RecentHours;

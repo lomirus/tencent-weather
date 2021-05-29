@@ -1,7 +1,6 @@
 import { useContext, CSSProperties } from 'react';
 
 import Context from '../store/context'
-import { ReducerAction } from '../store/types'
 import TrendChart from './RecentWeek/WeekChart'
 
 const styles: Record<string, CSSProperties> = {

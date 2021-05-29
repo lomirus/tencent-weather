@@ -1,7 +1,6 @@
-import { useContext, useEffect, CSSProperties } from 'react'
+import { useState, CSSProperties, SetStateAction, useContext } from 'react'
 
 import Context from '../store/context'
-import { ReducerAction } from '../store/types'
 
 const styles: Record<string, CSSProperties> = {
     root: {
@@ -37,40 +36,52 @@ const styles: Record<string, CSSProperties> = {
     }
 }
 
+type nowType = {
+    city: string,
+    tip: string,
+    weather: string,
+    temperature: number,
+    details: Array<Array<string>>
+}
+
 const Header = () => {
-    const [state, dispatch] = useContext(Context);
-    useEffect(() => {
-        fetchWeatherNow(dispatch)
-    }, [])
-    return <header style={{ ...styles.root, ...getBackground(state.isDay) }}>
-        <div style={styles.location}>{state.now.city}</div>
+    const ctx = useContext(Context)[0]
+    const [state, setState] = useState<nowType>({
+        city: "",
+        temperature: 0,
+        weather: "",
+        details: [],
+        tip: ""
+    });
+
+    fetchWeatherNow(setState)
+
+    return <header style={{ ...styles.root, ...getBackground(ctx.isDaytime) }}>
+        <div style={styles.location}>{state.city}</div>
         <div style={styles.main}>
-            <span style={styles.temperature}>{state.now.temperature}°</span>
-            <span style={styles.weather}>{state.now.weather}</span>
+            <span style={styles.temperature}>{state.temperature}°</span>
+            <span style={styles.weather}>{state.weather}</span>
             <div style={styles.details}>
-                {state.now.details.map(v => <span key={v[0]}>{v[0]} {v[1]}</span>)}
+                {state.details.map(v => <span key={v[0]}>{v[0]} {v[1]}</span>)}
             </div>
         </div>
-        <div style={styles.tip}>{state.now.tip}</div>
+        <div style={styles.tip}>{state.tip}</div>
     </header>
 }
 
-async function fetchWeatherNow(dispatch: React.Dispatch<ReducerAction>) {
+async function fetchWeatherNow(setState: React.Dispatch<SetStateAction<nowType>>) {
     const data = await fetch(`/api/v1/weather/now`)
     const json = await data.json();
-    dispatch({
-        type: "NOW",
-        payload: json
-    })
+    setState(json)
 }
 
-function getBackground(isDay: boolean): CSSProperties {
+function getBackground(isDaytime: boolean): CSSProperties {
     return {
         background: `
             url(${require("../assets/background/layer1.png").default}) no-repeat,
             url(${require("../assets/background/layer2.png").default}) no-repeat, 
             url(${require("../assets/background/layer3.png").default}) no-repeat, 
-            linear-gradient(-90deg,${isDay ? "#50ade8,#7ae0fa" : "#313877,#44abec"})
+            linear-gradient(-90deg,${isDaytime ? "#50ade8,#7ae0fa" : "#313877,#44abec"})
         `,
         backgroundSize: "100% auto",
         backgroundPosition: "0 100%"

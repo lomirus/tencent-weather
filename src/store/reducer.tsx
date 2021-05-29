@@ -1,17 +1,31 @@
-import { ReducerState, ReducerAction } from './types'
+type DayType = {
+    day: string,
+    date: string,
+    daytime_weather: string,
+    daytime_icon: string,
+    night_weather: string,
+    night_icon: string,
+    max_t: number,
+    min_t: number,
+    wind: string,
+    wind_speed: number
+}
+
+type ReducerState = {
+    isDaytime: boolean,
+    days: Array<DayType>,
+}
+
+type ReducerAction = {
+    type: string,
+    payload: Record<string, any>
+}
 
 const initialState: ReducerState = (() => {
     const now = new Date();
     const nowHour = now.getHours();
     return {
-        isDay: nowHour < 19 && nowHour > 5,
-        now: {
-            city: "",
-            temperature: 0,
-            weather: "",
-            details: [],
-            tip: ""
-        },
+        isDaytime: nowHour < 19 && nowHour > 5,
         days: Array.from({ length: 7 }, () => {
             return {
                 day: "Loading",
@@ -26,25 +40,15 @@ const initialState: ReducerState = (() => {
                 wind_speed: 0
             }
         }),
-        hours: Array.from({ length: 24 }, () => {
-            return {
-                time: "Loading",
-                icon: "qing",
-                temperature: 0
-            }
-        }),
-        suggestions: []
     }
 })()
 
 const reducer = (state: ReducerState, action: ReducerAction): ReducerState => {
     switch (action.type) {
         case "NOW": return Object.assign({}, state, { now: action.payload });
-        case "HOURS": return Object.assign({}, state, { hours: action.payload });
         case "DAYS": return Object.assign({}, state, { days: action.payload });
-        case "SUGGESTIONS": return Object.assign({}, state, { suggestions: action.payload });
         default: return state;
     }
 }
 
-export { reducer, initialState };
+export { reducer, initialState, ReducerAction, ReducerState };

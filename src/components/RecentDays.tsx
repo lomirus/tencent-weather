@@ -30,14 +30,14 @@ const RecentDays = () => {
     return <div style={styles.main}>
         <DayWeather
             day="今天"
-            isDay={state.isDay}
+            isDaytime={state.isDaytime}
             weather={state.days[0].daytime_weather}
             icon={state.days[0].daytime_icon}
             temperature={`${state.days[0].max_t}/${state.days[0].min_t}°`} />
         <div style={styles.gap}></div>
         <DayWeather
             day="明天"
-            isDay={state.isDay}
+            isDaytime={state.isDaytime}
             weather={state.days[1].night_weather}
             icon={state.days[1].night_icon}
             temperature={`${state.days[1].max_t}/${state.days[1].min_t}°`} />
