@@ -13,7 +13,8 @@ const initialState: ReducerState = (() => {
             tip: ""
         },
         timeline: [],
-        trend: []
+        trend: [],
+        suggestions: []
     }
 })()
 
@@ -22,6 +23,7 @@ const reducer = (state: ReducerState, action: ReducerAction): ReducerState => {
         case "NOW": return Object.assign({}, state, { now: action.payload });
         case "TIMELINE":  return Object.assign({}, state, { timeline: action.payload });
         case "TREND":  return Object.assign({}, state, { trend: action.payload });
+        case "SUGGESTIONS":  return Object.assign({}, state, { suggestions: action.payload });
         default: return state;
     }
 }

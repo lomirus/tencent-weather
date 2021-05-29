@@ -10,15 +10,15 @@ module.exports = (_env, argv) => {
         },
         module: {
             rules: [{
-                test: /\.tsx/,
+                test: /\.tsx$/,
                 include: resolve("src"),
                 use: "babel-loader"
             }, {
-                test: /\.css/,
+                test: /\.css$/,
                 include: resolve("src"),
                 use: ["style-loader", "css-loader"]
             }, {
-                test: /\.png/,
+                test: /\.(png)|(svg)$/,
                 include: resolve("src"),
                 use: "url-loader"
             }]

@@ -1,8 +1,7 @@
 import { useContext, CSSProperties, useRef, useEffect, Dispatch } from 'react';
-import * as echarts from 'echarts/core';
 
 import Context from '../store/context'
-import { ReducerAction, TrendItemType } from '../store/types'
+import { ReducerAction } from '../store/types'
 import TrendChart from './Trend/TrendChart'
 
 const styles: Record<string, CSSProperties> = {

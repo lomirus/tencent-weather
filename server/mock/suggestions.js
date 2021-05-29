@@ -1,0 +1,33 @@
+module.exports = [{
+    icon: "t_shirt",
+    state: "热",
+    for: "穿衣"
+}, {
+    icon: "sports",
+    state: "较适宜",
+    for: "运动"
+}, {
+    icon: "umbrella",
+    state: "不带伞",
+    for: "雨伞"
+}, {
+    icon: "sun",
+    state: "极强",
+    for: "防晒"
+}, {
+    icon: "cold",
+    state: "少发",
+    for: "感冒"
+}, {
+    icon: "fishing",
+    state: "较适宜",
+    for: "钓鱼"
+}, {
+    icon: "car_washing",
+    state: "较不宜",
+    for: "洗车"
+}, {
+    icon: "travel",
+    state: "事宜",
+    for: "旅游"
+}, ]

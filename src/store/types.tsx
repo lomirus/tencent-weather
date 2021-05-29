@@ -25,7 +25,12 @@ type ReducerState = {
         weather: string,
         temperature: number
     }>,
-    trend: Array<TrendItemType>
+    trend: Array<TrendItemType>,
+    suggestions: Array<{
+        icon: string,
+        state: string,
+        for: string,
+    }>
 }
 
 type ReducerAction = {
