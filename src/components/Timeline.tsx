@@ -9,7 +9,6 @@ const styles: Record<string, CSSProperties> = {
         paddingTop: "30px",
         paddingBottom: "25px",
         display: 'flex',
-        width: '100vw',
         overflowX: "auto",
         flexBasis: "80px",
         backgroundColor: "#FFFFFF"

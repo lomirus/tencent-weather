@@ -6,7 +6,6 @@ import { ReducerAction } from '../store/types'
 const styles: Record<string, CSSProperties> = {
     root: {
         color: "#FFFFFF",
-        width: "100vw",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
