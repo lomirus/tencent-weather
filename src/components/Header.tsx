@@ -9,8 +9,7 @@ const styles: Record<string, CSSProperties> = {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        background: "linear-gradient(-90deg,#313877,#44abec)",
-        height: "470px"
+        height: "470px",
     }
 }
 
@@ -26,7 +25,14 @@ const Header = ({ location, temperature, weather, details, tip }: PropsType) => 
     const [state, dispatch] = useContext(Context);
     return <div style={{
         ...styles.main,
-        background: state.isDay ? "linear-gradient(-90deg,#50ade8,#7ae0fa)" : "linear-gradient(-90deg,#313877,#44abec)"
+        background: `
+            url(${require("../assets/background/layer1.png").default}) no-repeat,
+            url(${require("../assets/background/layer2.png").default}) no-repeat, 
+            url(${require("../assets/background/layer3.png").default}) no-repeat, 
+            linear-gradient(-90deg,${state.isDay ? "#50ade8,#7ae0fa" : "#313877,#44abec" })
+        `,
+        backgroundSize: "100% auto",
+        backgroundPosition: "0 100%"
     }}>
         <div style={{
             margin: "18px 0 0 6px"
