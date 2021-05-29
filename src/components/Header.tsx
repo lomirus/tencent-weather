@@ -38,17 +38,13 @@ const styles: Record<string, CSSProperties> = {
     }
 }
 
-type PropsType = {
-    location: string,
-}
-
-const Header = ({ location }: PropsType) => {
+const Header = () => {
     const [state, dispatch] = useContext(Context);
     useEffect(() => {
         fetchWeatherNow(dispatch)
     }, [])
     return <div style={{ ...styles.root, ...getBackground(state.isDay) }}>
-        <div style={styles.location}>{location}</div>
+        <div style={styles.location}>{state.now.city}</div>
         <div style={styles.main}>
             <span style={styles.temperature}>{state.now.temperature}°</span>
             <span style={styles.weather}>{state.now.weather}</span>
@@ -56,25 +52,18 @@ const Header = ({ location }: PropsType) => {
                 {state.now.details.map(v => <span key={v[0]}>{v[0]} {v[1]}</span>)}
             </div>
         </div>
-        <div style={styles.tip}>光芒透过云缝，洒向大地~</div>
+        <div style={styles.tip}>{state.now.tip}</div>
     </div>
 }
 
 async function fetchWeatherNow(dispatch: React.Dispatch<ReducerAction>) {
-    const data = await fetch(`https://tianqiapi.com/free/day?appid=13711624&appsecret=Z284b9Hc&city=重庆`)
+    const data = await fetch(`/api/v1/weather/now`)
     const json = await data.json();
-    console.log(json)
     dispatch({
         type: "NOW",
-        payload: {
-            temperature: json.tem,
-            weather: json.wea,
-            details: [
-                [json.win, json.win_speed]
-            ]
-        }
+        payload: json
     })
-    console.log(json.now)
+    console.log(json)
 }
 
 function getBackground(isDay: boolean): CSSProperties {

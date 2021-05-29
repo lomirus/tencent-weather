@@ -1,8 +1,10 @@
 type ReducerState = {
     isDay: boolean,
     now: {
-        temperature: number,
+        city: string,
+        tip: string,
         weather: string,
+        temperature: number,
         details: Array<Array<string>>
     }
 }

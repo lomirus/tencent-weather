@@ -31,7 +31,11 @@ module.exports = (_env, argv) => {
         },
         devtool: argv.mode === "development" ? "eval-source-map" : "source-map",
         devServer: {
-            host: "0.0.0.0"
+            host: "0.0.0.0",
+            proxy: {
+                "/api/v1": "http://localhost:3000",
+                secure: false
+            }
         }
     }
     return config;
