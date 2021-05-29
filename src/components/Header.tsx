@@ -24,7 +24,10 @@ type PropsType = {
 
 const Header = ({ location, temperature, weather, details, tip }: PropsType) => {
     const [state, dispatch] = useContext(Context);
-    return <div style={styles.main}>
+    return <div style={{
+        ...styles.main,
+        background: state.isDay ? "linear-gradient(-90deg,#50ade8,#7ae0fa)" : "linear-gradient(-90deg,#313877,#44abec)"
+    }}>
         <div style={{
             margin: "18px 0 0 6px"
         }}>{location}</div>

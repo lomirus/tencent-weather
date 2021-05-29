@@ -1,5 +1,5 @@
 type ReducerState = {
-
+    isDay: boolean,
 }
 
 type ReducerAction = {
