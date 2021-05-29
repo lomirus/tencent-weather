@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "serve": "npx webpack serve --mode=development",
+    "dev": "npx webpack serve --mode=development",
+    "pro": "npx webpack serve --mode=prodution",
     "test": "npx webpack --mode=development",
     "build": "npx webpack --mode=production",
     "server": "node server/index.js"
