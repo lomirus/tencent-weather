@@ -5,7 +5,8 @@
   "scripts": {
     "serve": "npx webpack serve --mode=development",
     "test": "npx webpack --mode=development",
-    "build": "npx webpack --mode=production"
+    "build": "npx webpack --mode=production",
+    "server": "node server/index.js"
   },
   "author": "Anonymous",
   "license": "MIT",
