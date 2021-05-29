@@ -19,7 +19,7 @@ const Suggestions = ({}: PropsType) => {
         fetchSuggestions(dispatch)
     })
     return <div style={styles.main}>
-        {state.suggestions.map(s => (<div>
+        {state.suggestions.map(s => (<div key={s.for}>
             <img src={require(`../assets/suggestions/${s.icon}.svg`).default} />
             <span>{s.state}</span>
             <span>{s.for}</span>
