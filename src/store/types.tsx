@@ -8,7 +8,7 @@ type TrendItemType = {
     max_t: number,
     min_t: number,
     wind: string,
-    wind_speed: string
+    wind_speed: number
 }
 
 type ReducerState = {

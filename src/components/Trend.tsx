@@ -81,7 +81,7 @@ const Trend = () => {
                     <span style={styles.dayDay}>{day.day}</span>
                     <span style={styles.dayDate}>{day.date}</span>
                     <span style={styles.dayWeather}>{day.daytime_weather}</span>
-                    <img src={require(`../assets/night/${day.daytime_icon}.png`).default} style={styles.image} />
+                    <img src={require(`../assets/day/${day.daytime_icon}.png`).default} style={styles.image} />
                 </div>
             ))}
         </div>

@@ -8,18 +8,18 @@ module.exports = [{
     max_t: 28,
     min_t: 20,
     wind: "东南风",
-    wind_speed: "4级"
+    wind_speed: 4
 }, {
     day: "今天",
     date: "05/29",
     daytime_weather: "阴",
     daytime_icon: "yin",
-    night_weather: "阴",
-    night_icon: "yin",
+    night_weather: "晴",
+    night_icon: "qing",
     max_t: 29,
     min_t: 21,
     wind: "东南风",
-    wind_speed: "4级"
+    wind_speed: 4
 }, {
     day: "明天",
     date: "05/30",
@@ -30,18 +30,18 @@ module.exports = [{
     max_t: 30,
     min_t: 20,
     wind: "东南风",
-    wind_speed: "4级"
+    wind_speed: 4
 }, {
     day: "后天",
     date: "05/31",
-    daytime_weather: "阴",
-    daytime_icon: "yin",
+    daytime_weather: "晴",
+    daytime_icon: "qing",
     night_weather: "阴",
     night_icon: "yin",
     max_t: 29,
     min_t: 21,
     wind: "东南风",
-    wind_speed: "4级"
+    wind_speed: 4
 }, {
     day: "周二",
     date: "06/01",
@@ -52,7 +52,7 @@ module.exports = [{
     max_t: 28,
     min_t: 22,
     wind: "东南风",
-    wind_speed: "4级"
+    wind_speed: 4
 }, {
     day: "周三",
     date: "06/02",
@@ -63,7 +63,7 @@ module.exports = [{
     max_t: 28,
     min_t: 22,
     wind: "东南风",
-    wind_speed: "4级"
+    wind_speed: 4
 }, {
     day: "周四",
     date: "06/03",
@@ -74,5 +74,5 @@ module.exports = [{
     max_t: 28,
     min_t: 20,
     wind: "东南风",
-    wind_speed: "4级"
+    wind_speed: 4
 }]
