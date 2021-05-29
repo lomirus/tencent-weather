@@ -17,7 +17,6 @@ const styles: Record<string, CSSProperties> = {
         alignItems: "center",
         flexDirection: "column",
         height: "98px",
-        width: "calc(25vw - 2px)",
         border: "1px solid #e6e6e6"
     },
     icon: {
