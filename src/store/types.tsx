@@ -1,3 +1,16 @@
+type TrendItemType = {
+    day: string,
+    date: string,
+    daytime_weather: string,
+    daytime_icon: string,
+    night_weather: string,
+    night_icon: string,
+    max_t: number,
+    min_t: number,
+    wind: string,
+    wind_speed: string
+}
+
 type ReducerState = {
     isDay: boolean,
     now: {
@@ -11,7 +24,8 @@ type ReducerState = {
         time: string,
         weather: string,
         temperature: number
-    }>
+    }>,
+    trend: Array<TrendItemType>
 }
 
 type ReducerAction = {
@@ -19,4 +33,4 @@ type ReducerAction = {
     payload: Record<string, any>
 }
 
-export { ReducerState, ReducerAction }
+export { ReducerState, ReducerAction, TrendItemType }
