@@ -24,7 +24,8 @@ module.exports = (_env, argv) => {
             }]
         },
         plugins: [new HtmlWebpackPlugin({
-            template: "./template/index.html"
+            template: "./template/index.html",
+            favicon: "./template/favicon.ico"
         })],
         resolve: {
             extensions: [".tsx", ".js"]
