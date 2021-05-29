@@ -27,6 +27,7 @@ echarts.use(
 const WeekChart = ({ max, min }: PropsType) => {
     const chartRef = useRef<HTMLDivElement>(null);
     useEffect(() => {
+        if (max.some(i => i === 0) && min.every(i => i === 0)) return;
         if (!chartRef.current) return;
         const chartElement = chartRef.current;
         const chart = echarts.init(chartElement);
