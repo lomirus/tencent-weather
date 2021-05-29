@@ -43,7 +43,7 @@ const Header = () => {
     useEffect(() => {
         fetchWeatherNow(dispatch)
     }, [])
-    return <div style={{ ...styles.root, ...getBackground(state.isDay) }}>
+    return <header style={{ ...styles.root, ...getBackground(state.isDay) }}>
         <div style={styles.location}>{state.now.city}</div>
         <div style={styles.main}>
             <span style={styles.temperature}>{state.now.temperature}°</span>
@@ -53,7 +53,7 @@ const Header = () => {
             </div>
         </div>
         <div style={styles.tip}>{state.now.tip}</div>
-    </div>
+    </header>
 }
 
 async function fetchWeatherNow(dispatch: React.Dispatch<ReducerAction>) {
