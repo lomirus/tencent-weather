@@ -89,6 +89,18 @@ const App = (): ReactElement => (
                     day: "周二",
                     date: "06/01",
                     weather: "qing"
+                }, {
+                    day: "周三",
+                    date: "06/01",
+                    weather: "qing"
+                }, {
+                    day: "周四",
+                    date: "06/01",
+                    weather: "qing"
+                }, {
+                    day: "周五",
+                    date: "06/01",
+                    weather: "qing"
                 }]}
             nights={[
                 {
@@ -111,7 +123,19 @@ const App = (): ReactElement => (
                     wind: "西北风",
                     weather: "qing",
                     level: 4
-                },]} />
+                }, {
+                    wind: "西北风",
+                    weather: "qing",
+                    level: 4
+                }, {
+                    wind: "西北风",
+                    weather: "qing",
+                    level: 4
+                }, {
+                    wind: "西北风",
+                    weather: "qing",
+                    level: 4
+                }]} />
         <Suggestions />
     </Context.Provider>
 )

@@ -1,4 +1,14 @@
-import { useContext, CSSProperties } from 'react'
+import { useContext, CSSProperties, useRef, useEffect } from 'react';
+import * as echarts from 'echarts/core';
+import {
+    GridComponent
+} from 'echarts/components';
+import {
+    LineChart
+} from 'echarts/charts';
+import {
+    CanvasRenderer
+} from 'echarts/renderers';
 
 import Context from '../store/context'
 
@@ -6,7 +16,8 @@ const styles: Record<string, CSSProperties> = {
     main: {
         marginTop: "10px",
         background: "#FFFFFF",
-        padding: "25px 0 24px 0"
+        padding: "25px 0 24px 0",
+        overflowX: "auto"
     },
     image: {
         width: "24px",
@@ -24,13 +35,15 @@ const styles: Record<string, CSSProperties> = {
         display: "flex",
         flexDirection: "column",
         flexBasis: "64px",
-        alignItems: "center"
+        alignItems: "center",
+        flexShrink: 0,
     },
     night: {
         display: "flex",
         flexDirection: "column",
         flexBasis: "64px",
-        alignItems: "center"
+        alignItems: "center",
+        flexShrink: 0,
     },
     dayDay: {
         color: "#b2b2b2",
@@ -59,6 +72,10 @@ const styles: Record<string, CSSProperties> = {
     nightLevel: {
         color: "#b2b2b2",
         fontSize: "12px",
+    },
+    chart: {
+        height: "135px",
+        width: `${64*8}px`
     }
 }
 
@@ -75,8 +92,52 @@ type PropsType = {
     }>
 }
 
+echarts.use(
+    [GridComponent, LineChart, CanvasRenderer]
+);
+
 const Trend = ({ days, nights }: PropsType) => {
     const [state, dispatch] = useContext(Context);
+    const chartRef = useRef<HTMLDivElement>(null);
+    useEffect(() => {
+        if (!chartRef.current) return;
+        const chartElement = chartRef.current;
+        const chart = echarts.init(chartElement);
+        const min = [82, 93, 90, 91, 100, 110, 132, 99];
+        const max = [93, 133, 129, 111, 132, 133, 139, 130];
+        const option = {
+            xAxis: {
+                show: false,
+                data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun', 'Mon']
+            },
+            yAxis: {
+                show: false,
+                max: Math.max(Math.max(...max), Math.max(...min)),
+                min: Math.min(Math.min(...max), Math.min(...min)),
+            },
+            grid: {
+                left: 0,
+                right: 0,
+                top: 24,
+                bottom: 8
+            },
+            label: {
+                show: true,
+                formatter: "{c}°"
+            },
+            series: [{
+                data: max,
+                type: 'line',
+                smooth: true
+            }, {
+                data: min,
+                type: 'line',
+                smooth: true
+            }]
+        };
+        chart.setOption(option);
+    }, [])
+
     return <div style={styles.main}>
         <div className="days" style={styles.days}>
             {days.map(day => (
@@ -88,6 +149,7 @@ const Trend = ({ days, nights }: PropsType) => {
                 </div>
             ))}
         </div>
+        <div id="chard" ref={chartRef} style={styles.chart}></div>
         <div className="nights" style={styles.nights}>
             {nights.map((night, index) => (
                 <div key={index} style={styles.night}>
