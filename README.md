@@ -1,5 +1,16 @@
-## Features
+## Introduction
 
+This is an imatation of the [Tencent Weather](https://xw.tianqi.qq.com/) of mobile web version. Considering the high cost of weather API, here I just used koa to write a simple server which can respond with the mock data. You can get API documentions [here](#API).
+
+## Preview
+
+### Loading Screen
+![Loading Screen](docs/loading.jpg)
+
+### Main Screen
+![Main Screen](docs/main.png)
+
+## Features
 
 ### Client End
 
@@ -13,16 +24,37 @@
 - `Babel`
 - `ECharts`
 - Progressive Web Application
+    - App Manifest
+    - Offline Cache
 
 ### Server End
 
 - `Koa 2`
+- ~~Mock Data~~
+
+## Installation
+
+```bash
+git clone git@github.com:lomirus/tencent-weather.git
+cd tencent-weather
+npm install
+```
+
+## Usage
+
+```bash
+npm run dev
+# in another bash tab
+npm run server
+```
+
+Then open the link http://localhost:8080/ in your browser.
 
 ## API
 
 ### `/api/v1/weather`
 
-APIs in this path will return the requested weather infomation, judging the location by user's IP.
+APIs in this path will return the requested weather infomation, judging the client location by user's IP.
 
 #### `/api/v1/weather/now`
 
@@ -43,7 +75,7 @@ Reponse Example:
 }
 ```
 
-#### `/api/v1/weather/timeline`
+#### `/api/v1/weather/hours`
 
 Returns the weather infomation of recent 24 hours.
 
@@ -56,9 +88,9 @@ Array<{
 }>(3)
 ```
 
-#### `/api/v1/weather/trend`
+#### `/api/v1/weather/days`
 
-Returns the weather infomation of recent days, from yesterday, a week in total.
+Returns the weather infomation of recent days, which starts from yesterday, and is 7 days in total.
 
 Reponse Example:
 ```js
@@ -78,7 +110,7 @@ Array<{
 
 #### `/api/v1/weather/suggestions`
 
-Returns the suggestions.
+Returns the suggestions, 8 ones in total in this version.
 
 Reponse Example:
 ```js
@@ -89,17 +121,4 @@ Array<{
 }>(8)
 ```
 
-#### `/api/v1/weather/recent`
-
-Returns the weather infomation of recent two days (today and tomorrow).
-
-Reponse Example:
-```js
-Array<{
-    weather: string, // "晴", "晴转阴"
-    icon: string, // "qing",
-    max_t: number, // 29,
-    min_t: number, // 21,
-}>(2)
-```
 
