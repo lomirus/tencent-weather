@@ -1,5 +1,7 @@
 const { resolve } = require("path")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
+const CopyWebpackPlugin = require("copy-webpack-plugin")
+const { GenerateSW } = require("workbox-webpack-plugin")
 
 module.exports = (_env, argv) => {
     const config = {
@@ -31,10 +33,21 @@ module.exports = (_env, argv) => {
                 use: "url-loader"
             }]
         },
-        plugins: [new HtmlWebpackPlugin({
-            template: "./template/index.html",
-            favicon: "./template/favicon.ico"
-        })],
+        plugins: [
+            new HtmlWebpackPlugin({
+                template: "./template/index.html",
+                favicon: "./template/favicon.ico"
+            }),
+            new CopyWebpackPlugin({
+                patterns: [
+                    { from: "./template/manifest.json", to: "manifest.json"},
+                    { from: "./template/icons", to: "icons"}
+                ]
+            }),
+            new GenerateSW({
+                maximumFileSizeToCacheInBytes: 1024 * 1024 * 8
+            })
+        ],
         resolve: {
             extensions: [".tsx", ".js"]
         },
