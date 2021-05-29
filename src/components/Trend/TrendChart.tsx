@@ -61,7 +61,7 @@ const TrendChart = ({ max, min }: PropsType) => {
             }]
         };
         chart.setOption(option);
-    })
+    }, [max.length, min.length])
 
     return  <div id="chard" ref={chartRef} style={chartStyle}></div>
 }
