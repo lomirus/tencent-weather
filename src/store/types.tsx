@@ -20,6 +20,12 @@ type ReducerState = {
         temperature: number,
         details: Array<Array<string>>
     },
+    recent: Array<{
+        weather: string,
+        icon: string
+        max_t: number,
+        min_t: number,
+    }>,
     timeline: Array<{
         time: string,
         weather: string,

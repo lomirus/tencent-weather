@@ -1,6 +1,6 @@
 const Koa = require('koa');
 
-const { now ,timeline, trend, suggestions } = require('./mock.js');
+const { now ,timeline, trend, suggestions, recent } = require('./mock.js');
 
 const app = new Koa();
 
@@ -10,6 +10,7 @@ app.use(async ctx => {
         case "/api/v1/weather/timeline": ctx.body = timeline; break;
         case "/api/v1/weather/trend": ctx.body = trend; break;
         case "/api/v1/weather/suggestions": ctx.body = suggestions; break;
+        case "/api/v1/weather/recent": ctx.body = recent; break;
         default: ctx.body = {
             err: "Invalid API Request"
         }

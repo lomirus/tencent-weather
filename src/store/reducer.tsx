@@ -12,6 +12,17 @@ const initialState: ReducerState = (() => {
             details: [],
             tip: ""
         },
+        recent: [{
+            weather: "Loading",
+            icon: "qing",
+            max_t: 0,
+            min_t: 0,
+        }, {
+            weather: "Loading",
+            icon: "qing",
+            max_t: 0,
+            min_t: 0,
+        }],
         timeline: [],
         trend: [],
         suggestions: []
@@ -24,6 +35,7 @@ const reducer = (state: ReducerState, action: ReducerAction): ReducerState => {
         case "TIMELINE":  return Object.assign({}, state, { timeline: action.payload });
         case "TREND":  return Object.assign({}, state, { trend: action.payload });
         case "SUGGESTIONS":  return Object.assign({}, state, { suggestions: action.payload });
+        case "RECENT":  return Object.assign({}, state, { recent: action.payload });
         default: return state;
     }
 }

@@ -41,7 +41,7 @@ const Suggestions = ({}: PropsType) => {
     const [state, dispatch] = useContext(Context);
     useEffect(() => {
         fetchSuggestions(dispatch)
-    })
+    }, [])
     return <div style={styles.main}>
         {state.suggestions.map(s => (<div key={s.for} style={styles.item}>
             <img style={styles.icon} src={require(`../assets/suggestions/${s.icon}.svg`).default} />

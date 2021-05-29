@@ -26,10 +26,11 @@ const styles: Record<string, CSSProperties> = {
 type PropsType = {
     day: string,
     weather: string,
+    icon: string,
     temperature: string,
 }
 
-const DayWeather = ({ day, weather, temperature }: PropsType) => {
+const DayWeather = ({ day, icon, weather, temperature }: PropsType) => {
     const [state, dispatch] = useContext(Context);
     return <div style={styles.root}>
         <div style={styles.topRow}>
@@ -38,7 +39,7 @@ const DayWeather = ({ day, weather, temperature }: PropsType) => {
         </div>
         <div style={styles.bottomRow}>
             <span>{weather}</span>
-            <img src={require('../../assets/night/qing.png').default} style={styles.image}></img>
+            <img src={require(`../../assets/night/${icon}.png`).default} style={styles.image}></img>
         </div>
     </div>
 }

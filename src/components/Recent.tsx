@@ -1,7 +1,8 @@
-import { useContext, CSSProperties } from 'react'
+import { useContext, Dispatch, useEffect, CSSProperties } from 'react'
 
 import Context from '../store/context'
 import DayWeather from './Recent/DayWeather'
+import { ReducerAction } from '../store/types'
 
 const styles: Record<string, CSSProperties> = {
     main: {
@@ -24,18 +25,34 @@ const styles: Record<string, CSSProperties> = {
     }
 }
 
-type PropsType = {
-    today: Record<string, string>,
-    tommorrow: Record<string, string>
+const Recent = () => {
+    const [state, dispatch] = useContext(Context);
+    useEffect(() => {
+        fetchRecent(dispatch)
+    }, [])
+    return <div style={styles.main}>
+        <DayWeather
+            day="今天"
+            weather={state.recent[0].weather}
+            icon={state.recent[0].icon}
+            temperature={`${state.recent[0].max_t}/${state.recent[0].min_t}°`} />
+        <div style={styles.gap}></div>
+        <DayWeather
+            day="明天"
+            weather={state.recent[1].weather}
+            icon={state.recent[1].icon}
+            temperature={`${state.recent[1].max_t}/${state.recent[1].min_t}°`} />
+    </div>
 }
 
-const Recent = ({ today, tommorrow }: PropsType) => {
-    const [state, dispatch] = useContext(Context);
-    return <div style={styles.main}>
-        <DayWeather day="今天" weather="多云" temperature="29/16°"/>
-        <div style={styles.gap}></div>
-        <DayWeather day="明天" weather="多云" temperature="28/15°"/>
-    </div>
+async function fetchRecent(dispatch: Dispatch<ReducerAction>) {
+    const data = await fetch("/api/v1/weather/recent")
+    const json = await data.json();
+    dispatch({
+        type: "RECENT",
+        payload: json
+    })
+    console.log(json)
 }
 
 export default Recent;

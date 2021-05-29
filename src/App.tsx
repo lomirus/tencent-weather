@@ -13,7 +13,7 @@ import Footer from './components/Footer'
 const App = (): ReactElement => (
     <Context.Provider value={useReducer(reducer, initialState)}>
         <Header />
-        <Recent today={{}} tommorrow={{}} />
+        <Recent />
         <Timeline />
         <Trend />
         <Suggestions />
