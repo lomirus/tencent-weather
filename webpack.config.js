@@ -3,7 +3,15 @@ const HtmlWebpackPlugin = require("html-webpack-plugin")
 
 module.exports = (_env, argv) => {
     const config = {
-        entry: "./src/index.tsx",
+        entry: {
+            app: {
+                import: "./src/index.tsx",
+                dependOn: "react-vendor"
+            },
+            "react-vendor": {
+                import: ['react', 'react-dom']
+            }
+        },
         output: {
             path: resolve('dist'),
             filename: "[name].js"
