@@ -11,58 +11,9 @@ import Trend from './components/Trend'
 
 const App = (): ReactElement => (
     <Context.Provider value={useReducer(reducer, initialState)}>
-        <Header
-            location="北京市 海淀区" />
+        <Header />
         <Recent today={{}} tommorrow={{}} />
-        <Timeline data={[{
-            time: "07:00",
-            weather: "qing",
-            temperature: 18
-        }, {
-            time: "08:00",
-            weather: "qing",
-            temperature: 18
-        }, {
-            time: "09:00",
-            weather: "qing",
-            temperature: 18
-        }, {
-            time: "10:00",
-            weather: "qing",
-            temperature: 18
-        }, {
-            time: "11:00",
-            weather: "qing",
-            temperature: 18
-        }, {
-            time: "12:00",
-            weather: "qing",
-            temperature: 18
-        }, {
-            time: "13:00",
-            weather: "qing",
-            temperature: 18
-        }, {
-            time: "14:00",
-            weather: "qing",
-            temperature: 18
-        }, {
-            time: "15:00",
-            weather: "qing",
-            temperature: 18
-        }, {
-            time: "16:00",
-            weather: "qing",
-            temperature: 18
-        }, {
-            time: "17:00",
-            weather: "qing",
-            temperature: 18
-        }, {
-            time: "18:00",
-            weather: "qing",
-            temperature: 18
-        }]} />
+        <Timeline />
         <Trend
             days={[
                 {

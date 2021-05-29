@@ -6,16 +6,20 @@ const initialState: ReducerState = (() => {
     return {
         isDay: nowHour < 19 && nowHour > 5,
         now: {
+            city: "",
             temperature: 0,
             weather: "",
-            details: []
-        }
+            details: [],
+            tip: ""
+        },
+        timeline: []
     }
 })()
 
 const reducer = (state: ReducerState, action: ReducerAction): ReducerState => {
     switch (action.type) {
-        case "NOW": return Object.assign({}, state, { now: action.payload }); break;
+        case "NOW": return Object.assign({}, state, { now: action.payload });
+        case "TIMELINE":  return Object.assign({}, state, { timeline: action.payload });
         default: return state;
     }
 }

@@ -1,6 +1,7 @@
-import { useContext, CSSProperties } from 'react'
+import { useContext, CSSProperties, useEffect, Dispatch } from 'react'
 
 import Context from '../store/context'
+import { ReducerAction } from '../store/types'
 
 const styles: Record<string, CSSProperties> = {
     main: {
@@ -35,23 +36,27 @@ const styles: Record<string, CSSProperties> = {
     }
 }
 
-type PropsType = {
-    data: Array<{
-        time: string,
-        weather: string,
-        temperature: number,
-    }>
-}
-
-const Timeline = ({ data }: PropsType) => {
+const Timeline = () => {
     const [state, dispatch] = useContext(Context);
+    useEffect(() => {
+        fetchHourlyWeather(dispatch)
+    }, [])
     return <div style={styles.main}>
-        {data.map(v => <div key={v.time} style={styles.item}>
+        {state.timeline.map(v => <div key={v.time} style={styles.item}>
             <span style={styles.time}>{v.time}</span>
-            <img src={require(`../assets/night/${v.weather}.png`).default} style={styles.weather}/>
+            <img src={require(`../assets/${state.isDay ? "day" : "night"}/${v.weather}.png`).default} style={styles.weather}/>
             <span style={styles.temperature}>{v.temperature}°</span>
         </div>)}
     </div>
+}
+
+async function fetchHourlyWeather(dispatch: Dispatch<ReducerAction>) {
+    const data = await fetch("/api/v1/weather/timeline");
+    const json = await data.json();
+    dispatch({
+        type: "TIMELINE",
+        payload: json
+    })
 }
 
 export default Timeline;

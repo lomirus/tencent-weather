@@ -6,7 +6,12 @@ type ReducerState = {
         weather: string,
         temperature: number,
         details: Array<Array<string>>
-    }
+    },
+    timeline: Array<{
+        time: string,
+        weather: string,
+        temperature: number
+    }>
 }
 
 type ReducerAction = {
