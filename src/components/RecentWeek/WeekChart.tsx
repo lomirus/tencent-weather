@@ -52,10 +52,12 @@ const WeekChart = ({ max, min }: PropsType) => {
                 formatter: "{c}°"
             },
             series: [{
+                color:'#FFB74D',
                 data: max,
                 type: 'line',
                 smooth: true
             }, {
+                color:'#4FC3F7',
                 data: min,
                 type: 'line',
                 smooth: true

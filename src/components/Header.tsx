@@ -28,7 +28,10 @@ const styles: Record<string, CSSProperties> = {
     },
     details: {
         marginTop: "10px",
-        fontSize: "14px"
+        fontSize: "14px",
+    },
+    detail: {
+        marginRight: "8px",
     },
     tip: {
         marginTop: "50px",
@@ -62,7 +65,7 @@ const Header = () => {
             <span style={styles.temperature}>{state.temperature}°</span>
             <span style={styles.weather}>{state.weather}</span>
             <div style={styles.details}>
-                {state.details.map(v => <span key={v[0]}>{v[0]} {v[1]}</span>)}
+                {state.details.map(v => <span key={v[0]} style={styles.detail}>{v[0]} {v[1]}</span>)}
             </div>
         </div>
         <div style={styles.tip}>{state.tip}</div>
