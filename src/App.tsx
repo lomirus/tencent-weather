@@ -8,6 +8,7 @@ import Recent from './components/Recent'
 import Suggestions from './components/Suggestions'
 import Timeline from './components/Timeline'
 import Trend from './components/Trend'
+import Footer from './components/Footer'
 
 const App = (): ReactElement => (
     <Context.Provider value={useReducer(reducer, initialState)}>
@@ -16,6 +17,7 @@ const App = (): ReactElement => (
         <Timeline />
         <Trend />
         <Suggestions />
+        <Footer />
     </Context.Provider>
 )
 
