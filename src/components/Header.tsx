@@ -61,16 +61,16 @@ const Header = ({ location }: PropsType) => {
 }
 
 async function fetchWeatherNow(dispatch: React.Dispatch<ReducerAction>) {
-    const data = await fetch(`https://devapi.qweather.com/v7/weather/now?key=b776a35cab6a4f4eaa30114d03de49d6&location=116.41,39.92`)
+    const data = await fetch(`https://tianqiapi.com/free/day?appid=13711624&appsecret=Z284b9Hc&city=重庆`)
     const json = await data.json();
+    console.log(json)
     dispatch({
         type: "NOW",
         payload: {
-            temperature: json.now.temp,
-            weather: json.now.text,
+            temperature: json.tem,
+            weather: json.wea,
             details: [
-                ["湿度", `${json.now.humidity}%`],
-                [json.now.windDir, `${json.now.windScale}级`]
+                [json.win, json.win_speed]
             ]
         }
     })
