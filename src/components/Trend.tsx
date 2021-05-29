@@ -65,10 +65,6 @@ const styles: Record<string, CSSProperties> = {
     nightLevel: {
         color: "#b2b2b2",
         fontSize: "12px",
-    },
-    chart: {
-        height: "135px",
-        width: `${64 * 8}px`
     }
 }
 

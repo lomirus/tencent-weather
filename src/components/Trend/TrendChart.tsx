@@ -12,7 +12,7 @@ import {
 
 const chartStyle: CSSProperties = {
     height: "135px",
-    width: `${64 * 8}px`
+    width: `${64 * 7}px`
 }
 
 type PropsType = {
@@ -61,7 +61,6 @@ const TrendChart = ({ max, min }: PropsType) => {
             }]
         };
         chart.setOption(option);
-        console.log(max, min)
     })
 
     return  <div id="chard" ref={chartRef} style={chartStyle}></div>
