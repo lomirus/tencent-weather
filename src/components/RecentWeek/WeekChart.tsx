@@ -24,7 +24,7 @@ echarts.use(
     [GridComponent, LineChart, CanvasRenderer]
 );
 
-const TrendChart = ({ max, min }: PropsType) => {
+const WeekChart = ({ max, min }: PropsType) => {
     const chartRef = useRef<HTMLDivElement>(null);
     useEffect(() => {
         if (!chartRef.current) return;
@@ -61,9 +61,9 @@ const TrendChart = ({ max, min }: PropsType) => {
             }]
         };
         chart.setOption(option);
-    }, [max.length, min.length])
+    })
 
     return  <div id="chard" ref={chartRef} style={chartStyle}></div>
 }
 
-export default TrendChart;
+export default WeekChart;

@@ -1,7 +1,6 @@
 const now = require('./mock/now.js');
-const timeline = require('./mock/timeline.js');
-const trend = require('./mock/trend.js');
+const hours = require('./mock/hours.js');
+const days = require('./mock/days.js');
 const suggestions = require('./mock/suggestions.js');
-const recent = require('./mock/recent.js');
 
-module.exports = { now, timeline, trend, suggestions, recent };
+module.exports = { now, hours, days, suggestions };

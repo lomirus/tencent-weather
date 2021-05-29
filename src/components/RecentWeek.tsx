@@ -1,8 +1,8 @@
-import { useContext, CSSProperties, useRef, useEffect, Dispatch } from 'react';
+import { useContext, CSSProperties } from 'react';
 
 import Context from '../store/context'
 import { ReducerAction } from '../store/types'
-import TrendChart from './Trend/TrendChart'
+import TrendChart from './RecentWeek/WeekChart'
 
 const styles: Record<string, CSSProperties> = {
     main: {
@@ -67,16 +67,13 @@ const styles: Record<string, CSSProperties> = {
     }
 }
 
-const Trend = () => {
+const RecentWeek = () => {
     const [state, dispatch] = useContext(Context);
-    useEffect(() => {
-        fetchTrend(dispatch)
-    }, [])
 
     return <div style={styles.main}>
         <div style={styles.days}>
-            {state.trend.map(day => (
-                <div key={day.day} style={styles.day}>
+            {state.days.map((day, index) => (
+                <div key={index} style={styles.day}>
                     <span style={styles.dayDay}>{day.day}</span>
                     <span style={styles.dayDate}>{day.date}</span>
                     <span style={styles.dayWeather}>{day.daytime_weather}</span>
@@ -84,9 +81,9 @@ const Trend = () => {
                 </div>
             ))}
         </div>
-        <TrendChart max={state.trend.map(v => v.max_t)} min={state.trend.map(v => v.min_t)}/>
+        <TrendChart max={state.days.map(v => v.max_t)} min={state.days.map(day => day.min_t)}/>
         <div style={styles.nights}>
-            {state.trend.map((day, index) => (
+            {state.days.map((day, index) => (
                 <div key={index} style={styles.night}>
                     <img src={require(`../assets/night/${day.night_icon}.png`).default} style={styles.image} />
                     <span style={styles.nightWeather}>{day.night_weather}</span>
@@ -98,13 +95,6 @@ const Trend = () => {
     </div>
 }
 
-async function fetchTrend(dispatch: Dispatch<ReducerAction>) {
-    const data = await fetch("/api/v1/weather/trend")
-    const json = await data.json();
-    dispatch({
-        type: "TREND",
-        payload: json
-    })
-}
 
-export default Trend;
+
+export default RecentWeek;

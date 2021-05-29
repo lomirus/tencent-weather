@@ -1,4 +1,10 @@
-type TrendItemType = {
+type HourType = {
+    time: string,
+    icon: string,
+    temperature: number
+}
+
+type DayType = {
     day: string,
     date: string,
     daytime_weather: string,
@@ -11,6 +17,12 @@ type TrendItemType = {
     wind_speed: number
 }
 
+type SuggestionType = {
+    icon: string,
+    state: string,
+    for: string,
+}
+
 type ReducerState = {
     isDay: boolean,
     now: {
@@ -20,23 +32,9 @@ type ReducerState = {
         temperature: number,
         details: Array<Array<string>>
     },
-    recent: Array<{
-        weather: string,
-        icon: string
-        max_t: number,
-        min_t: number,
-    }>,
-    timeline: Array<{
-        time: string,
-        weather: string,
-        temperature: number
-    }>,
-    trend: Array<TrendItemType>,
-    suggestions: Array<{
-        icon: string,
-        state: string,
-        for: string,
-    }>
+    hours: Array<HourType>,
+    days: Array<DayType>,
+    suggestions: Array<SuggestionType>
 }
 
 type ReducerAction = {
@@ -44,4 +42,4 @@ type ReducerAction = {
     payload: Record<string, any>
 }
 
-export { ReducerState, ReducerAction, TrendItemType }
+export { ReducerState, ReducerAction, HourType, DayType, SuggestionType }

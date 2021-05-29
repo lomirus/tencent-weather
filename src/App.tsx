@@ -1,24 +1,55 @@
-import { ReactElement, useReducer } from "react";
+import { ReactElement, useReducer, useContext, Dispatch } from "react";
 
-import Context from './store/context';
+import Context from './store/context'
+import { ReducerAction } from './store/types'
 import { reducer, initialState } from './store/reducer';
 
 import Header from './components/Header'
-import Recent from './components/Recent'
+import RecentDays from './components/RecentDays'
 import Suggestions from './components/Suggestions'
-import Timeline from './components/Timeline'
-import Trend from './components/Trend'
+import RecentHours from './components/RecentHours'
+import RecentWeek from './components/RecentWeek'
 import Footer from './components/Footer'
 
-const App = (): ReactElement => (
+const App = (): ReactElement => {
+    const [state, dispatch] = useContext(Context);
+    if (state.hours[0].time === "Loading")
+        fetchHourlyWeather(dispatch)
+    if (state.hours[0].time === "Loading")
+        fetchDailyWeather(dispatch)
+    return (
+        <div>
+            <Header />
+            <RecentDays />
+            <RecentHours />
+            <RecentWeek />
+            <Suggestions />
+            <Footer />
+        </div>
+    )
+}
+const ContextApp = (): ReactElement => (
     <Context.Provider value={useReducer(reducer, initialState)}>
-        <Header />
-        <Recent />
-        <Timeline />
-        <Trend />
-        <Suggestions />
-        <Footer />
+        <App />
     </Context.Provider>
 )
 
-export default App;
+async function fetchHourlyWeather(dispatch: Dispatch<ReducerAction>) {
+    const data = await fetch("/api/v1/weather/hours");
+    const json = await data.json();
+    dispatch({
+        type: "HOURS",
+        payload: json
+    })
+}
+
+async function fetchDailyWeather(dispatch: Dispatch<ReducerAction>) {
+    const data = await fetch("/api/v1/weather/days")
+    const json = await data.json();
+    dispatch({
+        type: "DAYS",
+        payload: json
+    })
+}
+
+export default ContextApp;

@@ -62,7 +62,6 @@ async function fetchWeatherNow(dispatch: React.Dispatch<ReducerAction>) {
         type: "NOW",
         payload: json
     })
-    console.log(json)
 }
 
 function getBackground(isDay: boolean): CSSProperties {

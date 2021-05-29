@@ -1,21 +1,20 @@
 ## Features
 
-### Main Packages
 
-#### Client End
+### Client End
 
 - `Webpack`
 	- Code Split
 - `React`
-	- Functionnal Components & Hooks
+	- Functionnal Components, Hooks, React 17 JSX Tranform
 	- CSS in JS
 	- Flux (Hooks)
-	- React 17 JSX Tranform
 - `Typescript`
 - `Babel`
 - `ECharts`
+- Progressive Web Application
 
-#### Server End
+### Server End
 
 - `Koa 2`
 
