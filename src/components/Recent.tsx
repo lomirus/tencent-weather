@@ -33,12 +33,14 @@ const Recent = () => {
     return <div style={styles.main}>
         <DayWeather
             day="今天"
+            isDay={state.isDay}
             weather={state.recent[0].weather}
             icon={state.recent[0].icon}
             temperature={`${state.recent[0].max_t}/${state.recent[0].min_t}°`} />
         <div style={styles.gap}></div>
         <DayWeather
             day="明天"
+            isDay={state.isDay}
             weather={state.recent[1].weather}
             icon={state.recent[1].icon}
             temperature={`${state.recent[1].max_t}/${state.recent[1].min_t}°`} />

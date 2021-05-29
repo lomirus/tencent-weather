@@ -1,6 +1,4 @@
-import { useContext, CSSProperties } from 'react'
-
-import Context from '../../store/context'
+import { CSSProperties } from 'react'
 
 const styles: Record<string, CSSProperties> = {
     root: {
@@ -24,14 +22,14 @@ const styles: Record<string, CSSProperties> = {
 }
 
 type PropsType = {
+    isDay: boolean,
     day: string,
     weather: string,
     icon: string,
     temperature: string,
 }
 
-const DayWeather = ({ day, icon, weather, temperature }: PropsType) => {
-    const [state, dispatch] = useContext(Context);
+const DayWeather = ({ isDay, day, icon, weather, temperature }: PropsType) => {
     return <div style={styles.root}>
         <div style={styles.topRow}>
             <span>{day}</span>
@@ -39,7 +37,7 @@ const DayWeather = ({ day, icon, weather, temperature }: PropsType) => {
         </div>
         <div style={styles.bottomRow}>
             <span>{weather}</span>
-            <img src={require(`../../assets/night/${icon}.png`).default} style={styles.image}></img>
+            <img src={require(`../../assets/${isDay ? "day" : "night"}/${icon}.png`).default} style={styles.image}></img>
         </div>
     </div>
 }
