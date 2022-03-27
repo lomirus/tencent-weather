@@ -4,11 +4,15 @@ This is an imatation of the [Tencent Weather](https://xw.tianqi.qq.com/) of mobi
 
 ## Preview
 
-### Loading Screen
-![Loading Screen](docs/loading.jpg)
+<details>
+    <summary>Loading Screen</summary>
+    <img alt="Loading Screen" src="docs/loading.jpg">
+</details>
 
-### Main Screen
-![Main Screen](docs/main.png)
+<details>
+    <summary>Main Screen</summary>
+    <img alt="Main Screen" src="docs/main.png">
+</details>
 
 ## Features
 
